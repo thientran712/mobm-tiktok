@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="style.css"><title>Authorization</title><meta name="robots" content="noindex"></head><body><main><header><img src="logo.png" alt=""><a href="./">Museum of Bad Money</a></header>
+<h1 id="h">Authorization</h1>
+<p id="msg">Waiting for TikTok…</p>
+<p><span class="code" id="code"></span></p>
+<p><button id="copy" hidden>Copy code</button></p>
+<script>
+const p=new URLSearchParams(location.search),code=p.get('code'),err=p.get('error');
+const m=document.getElementById('msg'),c=document.getElementById('code'),b=document.getElementById('copy');
+if(code){document.getElementById('h').textContent='Authorized';m.textContent='Copy this code back into the upload tool:';c.textContent=code;b.hidden=false;
+b.onclick=()=>navigator.clipboard.writeText(code).then(()=>b.textContent='Copied');}
+else if(err){m.textContent='Authorization failed: '+err+' — '+(p.get('error_description')||'');}
+else{m.textContent='No authorization code in this URL.';}
+</script>
+<nav><a href="./">Home</a> · <a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a></nav></main></body></html>
